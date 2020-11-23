@@ -17,16 +17,17 @@ const getConatctList = createSelector(
   },
 );
 
-const getContactItem = createSelector(
-  [(_, contactId) => contactId, getContacts],
-  (contactId, contacts) => contacts.find(contact => contact.id === contactId),
-);
+// const getContactItem = createSelector(
+//   [(_, contactId) => contactId, getContacts],
+//   (contactId, contacts) => contacts.find(contact => contact.id === contactId),
+// );
 
-// const getContactItem = (state, contactId) => {
-//   const contacts = getContacts(state);
-
-//   return contacts.find(contact => contact.id === contactId);
-// };
+const getContactItem = (state, contactId) => {
+  const contacts = getContacts(state);
+  // console.log('ownProps', contactId);
+  // console.log(contacts[0]._id);
+  return contacts.find(contact => contact._id === contactId);
+};
 
 export default {
   getContacts,

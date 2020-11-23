@@ -7,10 +7,10 @@ import phoneBookSelectors from '../../redux/PhoneBook/phoneBookSelectors.js';
 
 import s from './ContactListItem.module.css';
 
-const ContactItem = ({ phone, name, id, theme, removeContact }) => {
+const ContactItem = ({ phone, name, _id, theme, removeContact }) => {
   const href = `tel:+38${phone}`;
   return (
-    <li key={id} className={s.list__item}>
+    <li key={_id} className={s.list__item}>
       <span>{name}:</span>
       <a href={href} className={theme === 'light' ? s.dark : s.light}>
         {phone}

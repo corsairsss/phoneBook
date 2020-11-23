@@ -7,7 +7,7 @@ import PhoneBookRegisterView from '../../views/PhoneBookRegisterView/PhoneBookRe
 function SignUp() {
   const isAuth = useSelector(authSelectors.getToken);
 
-  return <>{typeof isAuth !== 'string' && <PhoneBookRegisterView />}</>;
+  return <>{<PhoneBookRegisterView />}</>;
 }
 
 export default SignUp;

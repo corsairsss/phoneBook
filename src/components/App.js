@@ -7,6 +7,8 @@ import routes from '../routes.js';
 import phoneBookSelectors from '../redux/PhoneBook/phoneBookSelectors.js';
 import authSelectors from '../redux/auth/authSelectors';
 // import authActions from '../redux/auth/authActions.js';
+import PrivateRoute from './Routes/PrivateRoute.js';
+import PublicRoute from './Routes/PublicRoute.js';
 
 import Section from './Section/Section.js';
 import PhoneBookView from '../views/PhoneBookView/PhoneBookView.js';
@@ -34,11 +36,19 @@ function App() {
 
         <Suspense fallback={<h1>Loading...</h1>}>
           <Switch>
-            {routes.map(route => (
+            {/* {routes.map(route => (
               <Route key={route.path} {...route} />
-            ))}
+            ))} */}
+
+            {routes.map(route =>
+              route.privat ? (
+                <PrivateRoute key={route.label} {...route} />
+              ) : (
+                <PublicRoute key={route.label} {...route} />
+              ),
+            )}
           </Switch>
-          {typeof isAuth === 'string' && <PhoneBookView />}
+          {/* {typeof isAuth === 'string' && <PhoneBookView />} */}
         </Suspense>
       </Section>
     </BrowserRouter>
