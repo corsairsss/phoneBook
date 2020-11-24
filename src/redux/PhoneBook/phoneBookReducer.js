@@ -6,7 +6,7 @@ import phoneBookActions from './phoneBookActions.js';
 const onAddContact = (state, { payload }) => [...state, payload];
 
 const onRemoveContact = (state, { payload }) =>
-  state.filter(item => item.id !== payload);
+  state.filter(item => item._id !== payload);
 
 const items = createReducer([], {
   [phoneBookActions.addContactSuccess]: onAddContact,
