@@ -30,8 +30,8 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Section title={'Phonebook'}>
         <Button />
+      <Section >
         {loading && <Spinner />}
 
         <Suspense fallback={<h1>Loading...</h1>}>

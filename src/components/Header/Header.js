@@ -10,9 +10,9 @@ function Header() {
   return (
     <>
       {/* {typeof isAuth !== 'string' && <Navigation />} */}
+      {typeof isAuth === 'string' && <UserMenu />}
       {<Navigation />}
 
-      {typeof isAuth === 'string' && <UserMenu />}
     </>
   );
 }
