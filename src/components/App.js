@@ -18,41 +18,41 @@ import Spinner from './Spinner/Spinner.js';
 import authOperation from '../redux/auth/authOperation.js';
 
 function App() {
-  const loading = useSelector(phoneBookSelectors.getLoading);
+	const loading = useSelector(phoneBookSelectors.getLoading);
 
-  const isAuth = useSelector(authSelectors.getToken);
+	const isAuth = useSelector(authSelectors.getToken);
 
-  const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(authOperation.getCurrentUser());
-  }, []);
+	useEffect(() => {
+		dispatch(authOperation.getCurrentUser());
+	}, []);
 
-  return (
-    <BrowserRouter>
-        <Button />
-      <Section >
-        {loading && <Spinner />}
+	return (
+		<BrowserRouter>
+			<Button />
+			<Section>
+				{loading && <Spinner />}
 
-        <Suspense fallback={<h1>Loading...</h1>}>
-          <Switch>
-            {/* {routes.map(route => (
+				<Suspense fallback={<h1>Loading...</h1>}>
+					<Switch>
+						{/* {routes.map(route => (
               <Route key={route.path} {...route} />
             ))} */}
 
-            {routes.map(route =>
-              route.privat ? (
-                <PrivateRoute key={route.label} {...route} />
-              ) : (
-                <PublicRoute key={route.label} {...route} />
-              ),
-            )}
-          </Switch>
-          {/* {typeof isAuth === 'string' && <PhoneBookView />} */}
-        </Suspense>
-      </Section>
-    </BrowserRouter>
-  );
+						{routes.map((route) =>
+							route.privat ? (
+								<PrivateRoute key={route.label} {...route} />
+							) : (
+								<PublicRoute key={route.label} {...route} />
+							)
+						)}
+					</Switch>
+					{/* {typeof isAuth === 'string' && <PhoneBookView />} */}
+				</Suspense>
+			</Section>
+		</BrowserRouter>
+	);
 }
 
 export default App;
