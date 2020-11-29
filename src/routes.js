@@ -21,9 +21,7 @@ export default [
     path: '/login',
     label: 'Login',
     exact: true,
-    component: lazy(() =>
-      import('./views/PhoneBookLogIn/PhoneBookLogInView.js'),
-    ),
+    component: lazy(() => import('./components/SignIn/SignIn.js')),
     privat: false,
     restricted: true,
   },
@@ -36,3 +34,4 @@ export default [
     restricted: false,
   },
 ];
+// component: lazy(() => import('./components/SignIn/SignIn.js')),

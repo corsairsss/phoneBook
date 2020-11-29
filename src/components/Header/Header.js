@@ -9,10 +9,8 @@ function Header() {
   const isAuth = useSelector(authSelectors.getToken);
   return (
     <>
-      {/* {typeof isAuth !== 'string' && <Navigation />} */}
       {typeof isAuth === 'string' && <UserMenu />}
       {<Navigation />}
-
     </>
   );
 }

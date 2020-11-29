@@ -75,7 +75,6 @@ const getCurrentUser = () => async (dispatch, getState) => {
     const { data } = await axios.get(
       'https://fierce-plateau-20788.herokuapp.com/users/current',
     );
-    console.log('---------->', data);
     dispatch(authActions.getCurrentUserSuccess(data));
   } catch (error) {
     dispatch(authActions.getCurrentUserError(error));

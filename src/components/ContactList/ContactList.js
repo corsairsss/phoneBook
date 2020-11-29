@@ -1,21 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import { connect, useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import phoneBookSelectors from '../../redux/PhoneBook/phoneBookSelectors.js';
-import phoneBookOperation from '../../redux/PhoneBook/phoneBookOperation.js';
 import ContactItem from '../ContactItem/ContactItem.js';
 
 import s from './ContactList.module.css';
 
-const ContactList = ({ list }) => {
-  // const dispatch = useDispatch();
-  // const list2 = useSelector(phoneBookSelectors.getConatctList());
-  // console.log('++++++++>', list);
-  // useEffect(() => {
-  //   dispatch(phoneBookOperation.fetchContact());
-  // }, []);
+const ContactList = () => {
+  const list = useSelector(phoneBookSelectors.getConatctList);
 
   return (
     <TransitionGroup component="ul" className={s.list}>
@@ -35,10 +29,4 @@ const ContactList = ({ list }) => {
   );
 };
 
-const mSTP = state => {
-  return {
-    list: phoneBookSelectors.getConatctList(state),
-  };
-};
-
-export default connect(mSTP)(ContactList);
+export default ContactList;
