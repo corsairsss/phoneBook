@@ -26,7 +26,7 @@ function ContactForm() {
     const isPhoneInContacts = isContactConfig(contacts, phone);
     if (isPhoneInContacts || phone === '') {
       setIsContact(true);
-      setTimeout(setIsContact(true), 2000);
+      setTimeout(() => setIsContact(false), 3000);
       return;
     }
     dispatch(phoneBookOperation.addContact({ name, phone }));

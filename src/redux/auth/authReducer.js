@@ -18,9 +18,6 @@ const user = createReducer(initialState, {
   [authActions.logInSuccess]: addUser,
   [authActions.logOutSuccess]: () => initialState,
   [authActions.getCurrentUserSuccess]: getUser,
-
-  // [phoneBookActions.fetchContactsSuccess]: (state, { payload }) => payload,
-  // [phoneBookActions.removeContactsSuccess]: onRemoveContact,
 });
 const token = createReducer(null, {
   [authActions.registerSuccess]: (_, { payload }) => payload.token,
@@ -28,20 +25,13 @@ const token = createReducer(null, {
   [authActions.logOutSuccess]: () => null,
 });
 
-// const filter = createReducer('', {
-//   [phoneBookActions.changeFilter]: (state, { payload }) => payload,
-// });
+const loading = createReducer(false, {
+  [authActions.registerRequest]: () => true,
+  [authActions.registerSuccess]: () => false,
+  [authActions.registerError]: () => false,
+  [authActions.logInRequest]: () => true,
+  [authActions.logInSuccess]: () => false,
+  [authActions.logInError]: () => false,
+});
 
-// const loading = createReducer(false, {
-//   [phoneBookActions.addContactRequest]: () => true,
-//   [phoneBookActions.addContactSuccess]: () => false,
-//   [phoneBookActions.addContactError]: () => false,
-//   [phoneBookActions.fetchContactsRequest]: () => true,
-//   [phoneBookActions.fetchContactsSuccess]: () => false,
-//   [phoneBookActions.fetchContactsError]: () => false,
-//   [phoneBookActions.removeContactsRequest]: () => true,
-//   [phoneBookActions.removeContactsSuccess]: () => false,
-//   [phoneBookActions.removeContactsError]: () => false,
-// });
-
-export default combineReducers({ user, token });
+export default combineReducers({ user, token, loading });
