@@ -1,3 +1,6 @@
+.container {
+  position: relative;
+}
 .form {
   box-sizing: border-box;
   margin: 0 auto;
@@ -28,12 +31,13 @@
   text-align: left;
   font-size: 20px;
 }
-.form__btn {
+.form__btn,
+.notActive {
+  cursor: pointer;
   width: 75%;
   height: 32px;
   padding: 5px 20px;
   margin-bottom: 20px;
-  cursor: pointer;
   background-color: rgb(56, 97, 231);
   color: #ffffff;
   border: none;
@@ -41,6 +45,11 @@
 
   font-weight: 600;
 }
+.notActive {
+  cursor: auto;
+  background-color: rgb(139, 149, 184);
+}
+
 .form__btn:focus {
   border: none;
   outline: none;
@@ -72,4 +81,25 @@
 
   transform: translateX(-70%);
   transition: all 350ms linear;
+}
+
+.passShow__btn {
+  cursor: pointer;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: transparent;
+  top: 58%;
+  left: 71%;
+}
+.passShow__btn:focus {
+  border: none;
+  outline: none;
+}
+.none {
+  display: none;
+}
+.visible {
+  display: inline;
 }

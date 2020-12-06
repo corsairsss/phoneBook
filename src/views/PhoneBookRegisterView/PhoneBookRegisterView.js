@@ -3,11 +3,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import authOperation from '../../redux/auth/authOperation.js';
 import s from './Register.module.css';
 
+import SvgEye from '../../components/assets/SvgEye/SvgEye.js';
+import SvgEyeHide from '../../components/assets/SvgEyeHide/SvgEyeHide.js';
+
 function PhoneBookRegister() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setConfirmPassword] = useState('');
+  const [show, setShow] = useState('password');
+  const [avtiveBtn, setAvtiveBtn] = useState(true);
+
   const dispatch = useDispatch();
   const loading = useSelector(state => state.auth.loading);
 
@@ -28,13 +34,21 @@ function PhoneBookRegister() {
   const updateName = ({ target }) => setName(target.value);
   const updateEmail = ({ target }) => setEmail(target.value);
   const updatePassword = ({ target }) => setPassword(target.value);
-  const updateConfirm = ({ target }) => setConfirmPassword(target.value);
+  const updateConfirm = ({ target }) => {
+    setConfirmPassword(target.value);
+    if (password === target.value) setAvtiveBtn(false);
+    else setAvtiveBtn(true);
+  };
+
+  function onHandleClick() {
+    show === 'text' ? setShow('password') : setShow('text');
+  }
 
   return (
     <>
       {loading && <h2>Loading...</h2>}
       {!loading && (
-        <>
+        <div className={s.container}>
           <h2>Register on PhoneBook</h2>
           <form onSubmit={handleSubmit} className={s.form}>
             <label className={s.form__label}>
@@ -63,7 +77,7 @@ function PhoneBookRegister() {
               Password:
               <input
                 className={s.form__input}
-                type="password"
+                type={show}
                 value={password}
                 onChange={updatePassword}
                 name="password"
@@ -74,18 +88,29 @@ function PhoneBookRegister() {
               passwordConfirm:
               <input
                 className={s.form__input}
-                type="password"
+                type={show}
                 value={passwordConfirm}
                 onChange={updateConfirm}
                 name="confirmPassword"
               />
             </label>
 
-            <button type="submit" className={s.form__btn}>
+            <button
+              type="submit"
+              disabled={avtiveBtn}
+              className={!avtiveBtn ? s.form__btn : s.notActive}
+            >
               To Register
             </button>
+            <button
+              type="button"
+              onClick={onHandleClick}
+              className={s.passShow__btn}
+            >
+              {show === 'password' ? <SvgEye /> : <SvgEyeHide />}
+            </button>
           </form>
-        </>
+        </div>
       )}
     </>
   );
